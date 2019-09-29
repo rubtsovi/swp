@@ -1,0 +1,75 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <div class="container d-flex">
+            <h3 class="flex-grow-0">{{ planet.name }}</h3>
+            <div class="flex-grow-1"></div>
+
+            <button mat-button class="flex-grow-0" [routerLink]="['/planets']">Back</button>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div class="container py-3">
+    <mat-card class="mb-4">
+        <mat-card-header>
+            <h5 matCardTitle>General information</h5>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-list>
+                <mat-list-item>
+                    <div class="param-name" matLine>Population</div>
+                    <div class="param-value">{{ planet.population }}</div>
+                </mat-list-item>
+                <mat-divider inset></mat-divider>
+                <mat-list-item>
+                    <div class="param-name" matLine>Climate</div>
+                    <div class="param-value">{{ planet.climate }}</div>
+                </mat-list-item>
+                <mat-divider inset></mat-divider>
+                <mat-list-item>
+                    <div class="param-name" matLine>Diameter</div>
+                    <div class="param-value">{{ planet.diameter }}</div>
+                </mat-list-item>
+                <mat-divider inset></mat-divider>
+                <mat-list-item>
+                    <div class="param-name" matLine>Gravity</div>
+                    <div class="param-value">{{ planet.gravity }}</div>
+                </mat-list-item>
+                <mat-divider inset></mat-divider>
+                <mat-list-item>
+                    <div class="param-name" matLine>Orbital period</div>
+                    <div class="param-value">{{ planet.orbital_period }}</div>
+                </mat-list-item>
+                <mat-divider inset></mat-divider>
+                <mat-list-item>
+                    <div class="param-name" matLine>Rotation period</div>
+                    <div class="param-value">{{ planet.rotation_period }}</div>
+                </mat-list-item>
+                <mat-divider inset></mat-divider>
+                <mat-list-item>
+                    <div class="param-name" matLine>Surface water</div>
+                    <div class="param-value">{{ planet.surface_water }}</div>
+                </mat-list-item>
+                <mat-divider inset></mat-divider>
+                <mat-list-item>
+                    <div class="param-name" matLine>Terrain</div>
+                    <div class="param-value">{{ planet.terrain }}</div>
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="planet.residents.length">
+        <mat-card-header>
+            <h5 matCardTitle>Famous residents</h5>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-list>
+                <div *ngFor="let resident of planet.residents; last as isLast">
+                    <mat-list-item>
+                        {{ resident }}
+                    </mat-list-item>
+                    <mat-divider inset *ngIf="!isLast"></mat-divider>
+                </div>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
+</div>

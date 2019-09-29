@@ -1,0 +1,14 @@
+@import "~@angular/material/theming";
+.param-name{
+  font-size: .8rem;
+}
+
+.param-value{
+  text-align: right;
+}
+
+mat-list-item{
+  &:hover{
+    background-color: map-get($mat-light-theme-background, hover);
+  }
+}

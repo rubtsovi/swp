@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <div class="container">
+            <mat-form-field floatLabel="never">
+                <input #searchInput matInput placeholder="Start typing planet name...">
+            </mat-form-field>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div class="py-3 container">
+    <div id="controls" class="px-3">
+        <mat-paginator [length]="planetsCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="paginator($event)"></mat-paginator>
+    </div>
+    <mat-nav-list *ngIf="planets">
+        <div *ngFor="let planet of planets; last as isLast">
+            <mat-list-item [routerLink]="['/planets', getPlanetId(planet.url)]">
+                <h4 mat-line>{{planet.name}}</h4>
+                <div mat-line>
+                    <span *ngIf="planet.population" mat-line>Population: {{planet.population}}</span>
+                </div>
+                <button mat-icon-button>
+                    <mat-icon>chevron_right</mat-icon>
+                </button>
+            </mat-list-item>
+        </div>
+    </mat-nav-list>
+</div>
+
+

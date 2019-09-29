@@ -2,3 +2,20 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+.container{
+  @include make-container();
+  @include make-container-max-widths();
+}
+
+#loader{
+  background-color: rgba($white, .87);
+  z-index: 9999;
+}
