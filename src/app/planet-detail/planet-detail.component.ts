@@ -11,7 +11,7 @@ import {LoaderSwitchService} from "../loader-switch.service";
     providers: [ApiService]
 })
 export class PlanetDetailComponent implements OnInit {
-    private planet: Planet;
+    private _planet: Planet;
 
     constructor(private loaderSwitch: LoaderSwitchService,
                 private route: ActivatedRoute) {
@@ -19,8 +19,11 @@ export class PlanetDetailComponent implements OnInit {
 
     ngOnInit() {
         this.loaderSwitch.switchLoaderOff();
-        this.planet = this.route.snapshot.data.planet;
-        console.log(this.planet);
+        this._planet = this.route.snapshot.data.planet;
     }
 
+
+    get planet(): Planet {
+        return this._planet;
+    }
 }

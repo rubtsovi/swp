@@ -14,9 +14,9 @@ import {debounceTime, map} from "rxjs/operators";
     providers: [ApiService]
 })
 export class PlanetListComponent implements OnInit, OnDestroy, AfterViewInit {
-    private planets: Planet[];
+    private _planets: Planet[];
     private planetsSubscription: Subscription;
-    private planetsCount: number;
+    private _planetsCount: number;
     private planetsCountSubscription: Subscription;
     @ViewChild(MatPaginator, {static: false}) pagePaginator: MatPaginator;
     @ViewChild('searchInput', {static: false}) searchInput: ElementRef;
@@ -29,7 +29,7 @@ export class PlanetListComponent implements OnInit, OnDestroy, AfterViewInit {
     ngOnInit() {
         this.getPlanets(10);
         this.api.getPlanetsCount().subscribe((count: number) => {
-            this.planetsCount = count;
+            this._planetsCount = count;
         })
     }
 
@@ -59,7 +59,7 @@ export class PlanetListComponent implements OnInit, OnDestroy, AfterViewInit {
     private getPlanets(limit: number, offset: number = 0, search: string | null = null): void {
         this.loaderSwitch.switchLoaderOn();
         this.planetsSubscription = this.api.getPlanets(limit, offset, search).subscribe((res: Planet[]) => {
-            this.planets = res;
+            this._planets = res;
             this.loaderSwitch.switchLoaderOff();
         });
     }
@@ -70,4 +70,13 @@ export class PlanetListComponent implements OnInit, OnDestroy, AfterViewInit {
         return +urlAsArray[urlAsArray.length - 2];
     }
 
+
+    public get planets(): Planet[] {
+        return this._planets;
+    }
+
+
+    public get planetsCount(): number {
+        return this._planetsCount;
+    }
 }

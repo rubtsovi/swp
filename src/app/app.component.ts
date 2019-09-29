@@ -15,7 +15,7 @@ import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Route
     providers: [LoaderSwitchService]
 })
 export class AppComponent {
-    private loaderState: boolean = true;
+    private _loaderState: boolean = true;
     constructor(private router: Router,
                 private loaderSwitch: LoaderSwitchService
     ) {
@@ -23,19 +23,24 @@ export class AppComponent {
             this.toggleLoader(event);
         });
         loaderSwitch.getLoaderState().subscribe((loaderState) => {
-            this.loaderState = loaderState;
+            this._loaderState = loaderState;
         });
     }
 
     public toggleLoader(routerEvent: RouterEvent): void {
         if (routerEvent instanceof NavigationStart) {
-            this.loaderState = true;
+            this._loaderState = true;
         } else if (
             routerEvent instanceof NavigationEnd ||
             routerEvent instanceof NavigationCancel ||
             routerEvent instanceof NavigationError
         ) {
-            this.loaderState = false;
+            this._loaderState = false;
         }
+    }
+
+
+    public get loaderState(): boolean {
+        return this._loaderState;
     }
 }
